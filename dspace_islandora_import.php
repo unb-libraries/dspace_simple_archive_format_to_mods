@@ -11,3 +11,5 @@ require_once 'lib/smarty/distribution/libs/Smarty.class.php';
 
 $path_to_parse = '';
 $parent_pid = '';
+$output_path = '';
+$pid_start_id = 1;
