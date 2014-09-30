@@ -49,7 +49,7 @@
             </mods:extension>
             <xsl:call-template name="dcModsNote"/>
             <mods:accessCondition type="use and reproduction">author</mods:accessCondition>
-            <mods:physicalDescription authority="local">PRE-PUBLICATION</mods:physicalDescription>
+            <mods:physicalDescription authority="local">PUBLISHED</mods:physicalDescription>
         </mods:mods>
     </xsl:template>
 
