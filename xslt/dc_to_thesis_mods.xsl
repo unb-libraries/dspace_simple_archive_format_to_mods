@@ -16,20 +16,16 @@
                 <mods:role>
                     <mods:roleTerm authority="marcrelator" type="text">Committee member</mods:roleTerm>
                 </mods:role>
-                <mods:displayForm>Committee Members</mods:displayForm>
+                <mods:displayForm />
             </mods:name>
             <xsl:call-template name="dcModsGranter"/>
             <mods:typeOfResource>text</mods:typeOfResource>
             <mods:genre>Senior Report</mods:genre>
             <xsl:call-template name="dcModsOriginInfo"/>
             <xsl:call-template name="dcModsLanguage"/>
-            <mods:physicalDescription>
-                <mods:form authority="marcform">electronic</mods:form>
-                <mods:extent/>
-            </mods:physicalDescription>
             <mods:abstract/>
             <mods:location>
-                <mods:url>Location</mods:url>
+                <mods:url />
             </mods:location>
             <xsl:call-template name="dcModsStatementResponsibility"/>
             <mods:subject authority="lcsh">
@@ -49,7 +45,11 @@
             </mods:extension>
             <xsl:call-template name="dcModsNote"/>
             <mods:accessCondition type="use and reproduction">author</mods:accessCondition>
-            <mods:physicalDescription authority="local">PUBLISHED</mods:physicalDescription>
+            <physicalDescription authority="local">
+                PUBLISHED
+                <form authority="marcform">electronic</form>
+                <extent/>
+            </physicalDescription>
         </mods:mods>
     </xsl:template>
 
@@ -92,7 +92,10 @@
                 <mods:roleTerm authority="marcrelator" type="text">author</mods:roleTerm>
             </mods:role>
             <mods:namePart type="given">
-                <xsl:apply-templates/>
+                <xsl:value-of select="normalize-space(substring-after(text(), ','))" />
+            </mods:namePart>
+            <mods:namePart type="family">
+                <xsl:value-of select="normalize-space(substring-before(text(), ','))" />
             </mods:namePart>
         </mods:name>
     </xsl:template>
@@ -151,9 +154,7 @@
 
     <xsl:template match="dc:language">
         <mods:language>
-            <mods:languageTerm authority="iso639-2b" type="code">
-                <xsl:apply-templates/>
-            </mods:languageTerm>
+            <mods:languageTerm authority="iso639-2b" type="code">eng</mods:languageTerm>
         </mods:language>
     </xsl:template>
 
