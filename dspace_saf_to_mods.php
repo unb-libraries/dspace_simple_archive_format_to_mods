@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Import Dspace Batch Export Format Into Fedora/Islandora.
+ * Convert Dspace Batch Simple Archive Format to MODS
  */
 
 $dspace_url = 'http://dspace.hil.unb.ca:8180';
