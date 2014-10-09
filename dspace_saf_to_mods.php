@@ -10,6 +10,7 @@ $dspace_root_oai_namespace = 'oai:dspace.hil.unb.ca';
 $path_to_parse = '/Volumes/Macintosh HD 2/dspace/collection_out/senior_reports';
 $output_path = '/Volumes/Macintosh HD 2/dspace/output';
 $sleep_each_item = 2;
+$xslt_path='xslt/dc_to_thesis_mods.xsl';
 
 $counter = 0;
 foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) {
@@ -73,7 +74,7 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
 
     // Use new dc:x in stylesheet
     $transformXSL = new DOMDocument();
-    $transformXSL->load('xslt/dc_to_thesis_mods.xsl');
+    $transformXSL->load('$xslt_path);
 
     $processor = new XSLTProcessor();
     $processor->importStylesheet($transformXSL);
