@@ -10,7 +10,6 @@ $dspace_root_oai_namespace = 'oai:dspace.hil.unb.ca';
 $path_to_parse = '/Volumes/Macintosh HD 2/dspace/collection_out/senior_reports';
 $output_path = '/Volumes/Macintosh HD 2/dspace/output';
 $sleep_each_item = 2;
-$limit = 10000;
 
 $counter = 0;
 foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) {
