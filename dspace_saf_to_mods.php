@@ -78,8 +78,6 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
     // Remove handle reference, this isn't valid anymore
     $oai_content = preg_replace('|<dc:identifier>http:\/\/hdl.handle.net/|', '<dc:identifier>', $oai_content);
 
-    print $oai_content;
-
     $dc_xml = new DOMDocument();
     $dc_xml->loadXML($oai_content);
 
