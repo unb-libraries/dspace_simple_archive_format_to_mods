@@ -14,6 +14,8 @@ $preferred_datastream_bundle = 'bundle:ORIGINAL';
 $xslt_path='xslt/dc_to_thesis_mods.xsl';
 
 $counter = 0;
+$files_not_imported=array();
+
 foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) {
   if ($counter >= $limit) {
     die("$limit Limit Reached");
@@ -40,15 +42,24 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
   // Check for Attached Files
   $contents_file = file_get_contents("$path_to_parse/$cur_dspace_bundle/contents");
   if ($contents_file) {
+    $previously_added_file = False;
+    $cur_file_signature = False;
     foreach (explode("\n", $contents_file) as $cur_bundle_file) {
-        $bundle_file_data = explode("\t",$cur_bundle_file);
-        if (substr($bundle_file_data[0], -4)  == '.pdf' && $bundle_file_data[1] == $preferred_datastream_bundle) {
-          // Add this file to the current
-          $cur_bundle_pdf = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}";
-          print "$cur_bundle_pdf\n";
+      $bundle_file_data = explode("\t",$cur_bundle_file);
+      $cur_file_signature = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}/{$bundle_file_data[1]}";
+      if (substr($bundle_file_data[0], -4)  == '.pdf' && $bundle_file_data[1] == $preferred_datastream_bundle) {
+        // Add this file to the current
+        $cur_bundle_pdf = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}";
+        if ($previously_added_file) {
+          $files_not_imported[] = $previously_added_file;
         }
+        $previously_added_file = $cur_file_signature;
+        print "$cur_bundle_pdf\n";
+      } else {
+        $files_not_imported[] = $cur_file_signature;
       }
     }
+  }
 
   // Write out bundle
   if ($cur_dc_file && $cur_handle) {
@@ -92,3 +103,5 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
   $counter++;
   }
 }
+
+file_put_contents('files_not_imported.txt', print_r($files_not_imported, true));
