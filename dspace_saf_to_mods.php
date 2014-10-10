@@ -49,11 +49,13 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
         $cur_bundle_pdf = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}";
         if ($previously_added_file) {
           $files_not_imported[] = $previously_added_file;
+          print "Did not import $previously_added_file\n";
         }
         $previously_added_file = $cur_file_signature;
         print "$cur_bundle_pdf\n";
       } else {
         $files_not_imported[] = $cur_file_signature;
+        print "Did not import $cur_file_signature\n";
       }
     }
   }
