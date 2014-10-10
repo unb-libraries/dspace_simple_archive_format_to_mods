@@ -75,7 +75,7 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
 
     // Use new dc:x in stylesheet
     $transformXSL = new DOMDocument();
-    $transformXSL->load('$xslt_path);
+    $transformXSL->load($xslt_path);
 
     $processor = new XSLTProcessor();
     $processor->importStylesheet($transformXSL);
