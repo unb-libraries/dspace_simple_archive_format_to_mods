@@ -43,6 +43,7 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
     $cur_file_signature = False;
     foreach (explode("\n", $contents_file) as $cur_bundle_file) {
       $bundle_file_data = explode("\t",$cur_bundle_file);
+      if (!isset($bundle_file_data[1])) { $bundle_file_data[1] = 'None'; }
       $cur_file_signature = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}/{$bundle_file_data[1]}";
       if (substr($bundle_file_data[0], -4)  == '.pdf' && $bundle_file_data[1] == $preferred_datastream_bundle) {
         // Add this file to the current
