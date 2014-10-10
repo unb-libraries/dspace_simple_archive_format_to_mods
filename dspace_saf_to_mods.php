@@ -17,9 +17,6 @@ $counter = 0;
 $files_not_imported=array();
 
 foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) {
-  if ($counter >= $limit) {
-    die("$limit Limit Reached");
-  }
   sleep($sleep_each_item);
   if ($cur_dspace_bundle != '..' &&  $cur_dspace_bundle != '.') {
 
