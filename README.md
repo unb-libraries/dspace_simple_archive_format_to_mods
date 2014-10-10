@@ -8,6 +8,6 @@ As Islandora batch only allows one datastream per XML file, this script only set
 
 The script will, however save any datastreams not imported in a log and write them to _files_not_imported.txt_ at the end of the import. This will allow you to audit the conversion and manually import any files that may be important.
 
-A quick way to see potential high-priority items would be:
+A quick way to see potential high-priority items missed by the 1-file-limit import would be:
 
 ```cat files_not_imported.txt | grep -v pdf.txt | grep -v None```
