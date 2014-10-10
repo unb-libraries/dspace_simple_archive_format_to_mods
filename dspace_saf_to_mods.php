@@ -10,6 +10,7 @@ $dspace_root_oai_namespace = 'oai:dspace.hil.unb.ca';
 $path_to_parse = '/Volumes/Macintosh HD 2/dspace/collection_out/senior_reports';
 $output_path = '/Volumes/Macintosh HD 2/dspace/output';
 $sleep_each_item = 2;
+$preferred_datastream_bundle = 'bundle:ORIGINAL';
 $xslt_path='xslt/dc_to_thesis_mods.xsl';
 
 $counter = 0;
@@ -41,7 +42,7 @@ foreach (scandir($path_to_parse, SCANDIR_SORT_ASCENDING) as $cur_dspace_bundle) 
   if ($contents_file) {
     foreach (explode("\n", $contents_file) as $cur_bundle_file) {
         $bundle_file_data = explode("\t",$cur_bundle_file);
-        if (substr($bundle_file_data[0], -4)  == '.pdf' && $bundle_file_data[1] == 'bundle:ORIGINAL') {
+        if (substr($bundle_file_data[0], -4)  == '.pdf' && $bundle_file_data[1] == $preferred_datastream_bundle) {
           // Add this file to the current
           $cur_bundle_pdf = "$path_to_parse/$cur_dspace_bundle/{$bundle_file_data[0]}";
           print "$cur_bundle_pdf\n";
